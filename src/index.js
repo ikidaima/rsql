@@ -88,6 +88,90 @@ class Rsql {
 
     return this;
   }
+
+  lt(key, value) {
+    this.state = validateValue(key, value)
+      ? `${key}${OPERATORS.lt[this._format]}${value}`
+      : null;
+
+    return this;
+  }
+
+  le(key, value) {
+    this.state = validateValue(key, value)
+      ? `${key}${OPERATORS.le[this._format]}${value}`
+      : null;
+
+    return this;
+  }
+
+  gt(key, value) {
+    this.state = validateValue(key, value)
+      ? `${key}${OPERATORS.gt[this._format]}${value}`
+      : null;
+
+    return this;
+  }
+
+  ge(key, value) {
+    this.state = validateValue(key, value)
+      ? `${key}${OPERATORS.ge[this._format]}${value}`
+      : null;
+
+    return this;
+  }
+
+  in(key, value) {
+    if (!validateValue(key, value)) {
+      return this;
+    }
+
+    if (!Array.isArray(value)) {
+      throw new TypeError('invalid type value for method "in"');
+    }
+
+    this.state = `${key}=in=(${value.join(',')})`;
+
+    return this;
+  }
+
+  out(key, value) {
+    if (!validateValue(key, value)) {
+      return this;
+    }
+
+    if (!Array.isArray(value)) {
+      throw new TypeError('invalid type value for method "out"');
+    }
+
+    this.state = `${key}=out=(${value.join(',')})`;
+
+    return this;
+  }
+
+  exists(key) {
+    this.state = validateValue(key) ? `${key}=ex=true` : null;
+
+    return this;
+  }
+
+  notExists(key) {
+    this.state = validateValue(key) ? `${key}=ex=false` : null;
+
+    return this;
+  }
+
+  re(key, value) {
+    this.state = validateValue(key, value) ? `${key}=re=${value}` : null;
+
+    return this;
+  }
+
+  group(value) {
+    this.state = validateValue(value) ? `(${value})` : null;
+    
+    return this;
+  }
 }
 
 Rsql.prototype._format = FORMATS.rsql;
