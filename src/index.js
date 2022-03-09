@@ -194,5 +194,6 @@ rsql.extendOperator = (name, operator) => {
     return this;
   };
 };
+rsql.extendMethod = (name, func) => Rsql.prototype[name] = func;
 
 export default rsql;
