@@ -189,7 +189,7 @@ rsql.setFormat = (value) => {
 };
 rsql.extendOperator = (name, operator) => {
   Rsql.prototype[name] = function(key, value) {
-    this.state = (key && value) ? `${key}${operator}${value}` : null;
+    this.state = validateValue(key, value) ? `${key}${operator}${value}` : null;
 
     return this;
   };
