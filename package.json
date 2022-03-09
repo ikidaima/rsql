@@ -6,19 +6,27 @@
     "fiql"
   ],
   "description": "util generate rsql string",
-  "main": "/dist/main.js",
-  "author": "Dmitriy Bulychev",
+  "main": "dist/rsql.cjs.js",
+  "module": "dist/rsql.ems.js",
+  "browser": "dist/rsql.umd.js",
+  "author": "Dmitriy Bulychev <d_bulychev@bk.ru>",
   "license": "ISC",
-  "module": "/dist/module.js",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "lint": "yarn lint:js",
     "lint:js": "eslint .",
     "test": "jest",
-    "build": "rollup -c"
+    "build": "rollup -c",
+    "dev": "rollup -c -w"
   },
   "devDependencies": {
     "@babel/core": "^7.17.5",
     "@babel/preset-env": "^7.16.11",
+    "@rollup/plugin-babel": "^5.3.1",
+    "@rollup/plugin-commonjs": "^21.0.2",
+    "@rollup/plugin-node-resolve": "^13.1.3",
     "babel-jest": "^27.5.1",
     "eslint": "^8.10.0",
     "eslint-plugin-jest": "^26.1.1",
