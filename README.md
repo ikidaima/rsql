@@ -5,10 +5,6 @@ util to generate rsql or fiql query string
 ## Installation
 
 ```
-npm i --save rsql
-
-or
-
 yarn add @ubic/rsql
 ```
 
